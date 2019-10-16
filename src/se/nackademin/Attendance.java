@@ -22,6 +22,7 @@ public class Attendance {
     }
     @Override
     public String toString() {
-        return customer.getName() + " " + this.dateTime.format(DateTimeFormatter.ofPattern("YYMMdd HH:mm"));
+        return customer.getssNumber() + " " + customer.getName() +
+                " At gym: " + this.dateTime.format(DateTimeFormatter.ofPattern("YYMMdd HH:mm"));
     }
 }

@@ -2,11 +2,13 @@ package se.nackademin;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class GymUtil {
 
     public static void addAttendance () {
+        System.out.println("-- Add attendance --");
         Customer tempC = getCustomerObj();
 
         if (tempC == null)
@@ -19,15 +21,18 @@ public class GymUtil {
 
     }
 
-    public static void customerStillMember () {
+    public static void customerMembershipStatus() {
         System.out.println("-- Member? --");
         Customer tempC = getCustomerObj();
 
-        if (tempC == null)
+        if (tempC == null) {
             System.out.println("Member not found.");
+        }
+
         else {
-            if (tempC.getPayDate().plusDays(365).isBefore(LocalDate.now()))
+            if (tempC.getPayDate().plusDays(365).isBefore(LocalDate.now())) {
                 System.out.println("Membership expired for member at " + tempC.getPayDate().plusDays(365));
+            }
             else {
                 System.out.println("Membership active. Expires at " + tempC.getPayDate().plusDays(365));
             }
@@ -40,6 +45,16 @@ public class GymUtil {
 
         Scanner sc = new Scanner(System.in);
         searchString = sc.nextLine();
+
+        for (Customer c:Main.customers) {
+            if (c.getName().equalsIgnoreCase(searchString) || c.getssNumber().equalsIgnoreCase(searchString)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public static Customer getCustomerObj (String searchString, List<Customer> cList) {
 
         for (Customer c:Main.customers) {
             if (c.getName().equalsIgnoreCase(searchString) || c.getssNumber().equalsIgnoreCase(searchString)) {
@@ -67,5 +82,28 @@ public class GymUtil {
 
         if (!found)
             System.out.println("No attendance found for member.");
+    }
+
+    public static boolean customerMembershipStatus(Customer c) {
+
+        if (c.getPayDate().plusDays(365).isBefore(LocalDate.now())) {
+            System.out.println("Membership expired for member at " + c.getPayDate().plusDays(365));
+            return false;
+        }
+        else {
+            System.out.println("Membership active. Expires at " + c.getPayDate().plusDays(365));
+            return true;
+        }
+    }
+
+
+    public static void printMembers () {
+        for (Customer c:Main.customers)
+            System.out.println(c);
+    }
+
+    public static void printAttendances () {
+        for (Attendance a:Main.attendanceAll)
+            System.out.println(a);
     }
 }
