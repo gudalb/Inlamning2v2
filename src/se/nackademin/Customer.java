@@ -14,6 +14,7 @@ public class Customer {
         this.ssNumber = ssNumber;
         this.name = name;
         this.payDate = payDate;
+        Main.customers.add(this);
     }
 
     public void addAttendance (Attendance a) {
@@ -26,6 +27,10 @@ public class Customer {
 
     public String getssNumber () {
         return this.ssNumber;
+    }
+
+    public LocalDate getPayDate () {
+        return this.payDate;
     }
 
     @Override

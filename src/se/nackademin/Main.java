@@ -11,5 +11,15 @@ public class Main {
 
         fileUtils.readCustomers(customers);
 
+        for (Customer c:customers) System.out.println(c);
+
+        //GymUtil.addAttendance();
+        GymUtil.addAttendance();
+        GymUtil.addAttendance();
+        GymUtil.customerStillMember();
+
+
+        for (Attendance a:attendanceAll) System.out.println(a);
+
     }
 }

@@ -1,11 +1,8 @@
 package se.nackademin;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class fileUtils {
 
@@ -28,7 +25,6 @@ public class fileUtils {
             System.out.println("File not found");
         }
 
-
         for (int i = 0; i < tempList.size(); i++) {
             String tempssNumber = "";
             String tempName = "";
@@ -47,10 +43,19 @@ public class fileUtils {
                     tempDate = LocalDate.parse(tempList.get(i));
                 }
             }
-            customers.add(new Customer(tempssNumber,tempName,tempDate));
+            new Customer(tempssNumber,tempName,tempDate);
         }
 
         fileRead = true;
         return fileRead;
+    }
+
+    public static void writeAttendance (Attendance a) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("attendance.txt", true))) {
+            bw.write(a.toString() + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error when printing attendance to file.");
+        }
     }
 }
