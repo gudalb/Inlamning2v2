@@ -12,4 +12,9 @@ public class Customer {
         this.name = name;
         this.payDate = payDate;
     }
+
+    @Override
+    public String toString() {
+        return ssNumber + " " + name + " " + payDate;
+    }
 }
