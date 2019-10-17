@@ -13,6 +13,8 @@ public class GymUtil {
 
         if (tempC == null)
             System.out.println("Customer not found.");
+        else if (!customerMembershipStatus(tempC))
+            System.out.println("Member has not paid\nAttendance not added");
         else {
             Attendance tempA = new Attendance(tempC);
             System.out.println("Attendance added for " + tempC.getName());
@@ -21,20 +23,23 @@ public class GymUtil {
 
     }
 
-    public static void customerMembershipStatus() {
+    public static boolean customerMembershipStatus() {
         System.out.println("-- Member? --");
         Customer tempC = getCustomerObj();
 
         if (tempC == null) {
             System.out.println("Member not found.");
+            return false;
         }
 
         else {
             if (tempC.getPayDate().plusDays(365).isBefore(LocalDate.now())) {
                 System.out.println("Membership expired for member at " + tempC.getPayDate().plusDays(365));
+                return false;
             }
             else {
                 System.out.println("Membership active. Expires at " + tempC.getPayDate().plusDays(365));
+                return true;
             }
         }
     }
