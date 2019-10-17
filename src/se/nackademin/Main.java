@@ -13,10 +13,10 @@ public class Main {
 
         GymUtil.printMembers();
 
-        //GymUtil.addAttendance();
-        //GymUtil.addAttendance();
+        GymUtil.addAttendance();
+        GymUtil.addAttendance();
         GymUtil.customerMembershipStatus();
-
+        GymUtil.customerMembershipStatus();
 
         //GymUtil.printAttendances();
 

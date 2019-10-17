@@ -54,7 +54,7 @@ public class GymUtil {
         return null;
     }
 
-    public static Customer getCustomerObj (String searchString, List<Customer> cList) {
+    public static Customer getCustomerObj (String searchString) {
 
         for (Customer c:Main.customers) {
             if (c.getName().equalsIgnoreCase(searchString) || c.getssNumber().equalsIgnoreCase(searchString)) {
@@ -96,6 +96,23 @@ public class GymUtil {
         }
     }
 
+    public static boolean validateSsNumber (String s) {
+        boolean approved = false;
+
+        try {
+            if (s.length() != 10 && Integer.parseInt(s) > 0)
+                throw new IncorrectSocialsecNumberException();
+            else
+                approved = true;
+
+        } catch (IncorrectSocialsecNumberException e) {
+            System.out.println("Personnummer måste innehålla 10 siffror.");
+        } catch (NumberFormatException e) {
+            System.out.println("Personnummer kan endast innehålla siffror.");
+        }
+
+        return approved;
+    }
 
     public static void printMembers () {
         for (Customer c:Main.customers)
